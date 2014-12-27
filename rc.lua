@@ -117,7 +117,7 @@ netwidget = wibox.widget.textbox()
 vicious.register(netwidget, vicious.widgets.net, '<span color="#7F9F7F">${wlp2s0 down_kb}</span> <span color="#CC9393">${wlp2s0 up_kb}</span>', 1)
 -- battery widget
 batwidget = wibox.widget.textbox()
-vicious.register(batwidget, vicious.widgets.bat, ' <span>$2% $3</span>', 60, "BAT1")
+vicious.register(batwidget, vicious.widgets.bat, ' <span>($1) $2% ($3)</span>', 60, "BAT1")
 -- Create a textclock widget
 mytextclock = awful.widget.textclock()
 
