@@ -1,4 +1,5 @@
 local vicious = require("vicious")
+local alttab = require("alttab")
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -282,7 +283,19 @@ globalkeys = awful.util.table.join(
                   awful.util.getdir("cache") .. "/history_eval")
               end),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end)
+    awful.key({ modkey }, "p", function() menubar.show() end),
+    -- alttab
+    awful.key({ "Mod1",           }, "Tab",
+        function ()
+           alttab.switch(1, "Alt_L", "Tab", "ISO_Left_Tab")
+        end     
+    ),
+                                 
+    awful.key({ "Mod1", "Shift"   }, "Tab",
+        function ()
+            alttab.switch(-1, "Alt_L", "Tab", "ISO_Left_Tab")
+        end
+    )
 )
 
 clientkeys = awful.util.table.join(
