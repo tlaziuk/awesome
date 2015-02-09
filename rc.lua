@@ -1,3 +1,4 @@
+local lfs = require("lfs")
 local vicious = require("vicious")
 local alttab = require("alttab")
 -- Standard awesome library
@@ -73,13 +74,26 @@ local layouts =
     awful.layout.suit.magnifier
 }
 -- }}}
-
+function scandir(dir)
+    
+end
 -- {{{ Wallpaper
-if beautiful.wallpaper then
-    for s = 1, screen.count() do
-        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
+local dir = lfs.currentdir();
+lfs.chdir('.config/awesome/wallpapers')
+local wall = {}
+local index = 1
+for file in lfs.dir('.') do
+    if lfs.attributes(file, "mode") == "file" then
+        wall[index] = file
+        index = index + 1
     end
 end
+if wall then
+    for s = 1, screen.count() do
+        gears.wallpaper.maximized(lfs.currentdir()..'/'..wall[math.random(1, #wall)], s, true)
+    end
+end
+lfs.chdir(dir)
 -- }}}
 
 -- {{{ Tags
