@@ -272,6 +272,9 @@ globalkeys = awful.util.table.join(
             end
         end),
 
+    -- Wallpaper changing
+    awful.key({ modkey, "Control" }, "w", function () gears.wallpaper.maximized(wallpath..'/'..wall[math.random(1, #wall)], mouse.screen, false) end),
+
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
