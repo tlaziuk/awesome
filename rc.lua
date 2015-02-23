@@ -90,7 +90,7 @@ for file in lfs.dir('.') do
 end
 if wall then
     for s = 1, screen.count() do
-        gears.wallpaper.maximized(lfs.currentdir()..'/'..wall[math.random(1, #wall)], s, true)
+        gears.wallpaper.maximized(lfs.currentdir()..'/'..wall[math.random(1, #wall)], s, false)
     end
 end
 lfs.chdir(dir)
