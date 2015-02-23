@@ -78,8 +78,9 @@ function scandir(dir)
     
 end
 -- {{{ Wallpaper
-local dir = lfs.currentdir();
-lfs.chdir('.config/awesome/wallpapers')
+local home = os.getenv("HOME");
+local wallpath = home..'/.config/awesome/wallpapers'
+lfs.chdir(wallpath)
 local wall = {}
 local index = 1
 for file in lfs.dir('.') do
@@ -90,10 +91,10 @@ for file in lfs.dir('.') do
 end
 if wall then
     for s = 1, screen.count() do
-        gears.wallpaper.maximized(lfs.currentdir()..'/'..wall[math.random(1, #wall)], s, false)
+        gears.wallpaper.maximized(wallpath..'/'..wall[math.random(1, #wall)], s, false)
     end
 end
-lfs.chdir(dir)
+lfs.chdir(home)
 -- }}}
 
 -- {{{ Tags
