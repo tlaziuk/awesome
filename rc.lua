@@ -131,10 +131,10 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- {{{ Wibox
 -- network usage widget
 netwidget = wibox.widget.textbox()
-vicious.register(netwidget, vicious.widgets.net, '<span color="#7F9F7F">${wlp2s0 down_kb}</span> <span color="#CC9393">${wlp2s0 up_kb}</span>', 1)
+vicious.register(netwidget, vicious.widgets.net, '<span color="#7F9F7F">${enp1s0 down_kb}</span> <span color="#CC9393">${enp1s0 up_kb}</span>', 1)
 -- battery widget
-batwidget = wibox.widget.textbox()
-vicious.register(batwidget, vicious.widgets.bat, ' <span>($1) $2% ($3)</span>', 60, "BAT1")
+-- batwidget = wibox.widget.textbox()
+-- vicious.register(batwidget, vicious.widgets.bat, ' <span>($1) $2% ($3)</span>', 60, "BAT1")
 -- Create a textclock widget
 mytextclock = awful.widget.textclock()
 
@@ -218,7 +218,7 @@ for s = 1, screen.count() do
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(netwidget)
-    right_layout:add(batwidget)
+    -- right_layout:add(batwidget)
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
 
@@ -257,6 +257,9 @@ globalkeys = awful.util.table.join(
             if client.focus then client.focus:raise() end
         end),
     awful.key({ modkey,           }, "w", function () mymainmenu:show() end),
+
+    -- Lock Screen
+    awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("xscreensaver-command -lock") end),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
